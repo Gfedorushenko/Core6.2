@@ -18,17 +18,17 @@ public class TestMain {
     @Test
     public void testReadString() {
         System.out.println("Running Test 1");
-        final String a = "new_data2.json";
+        final String fileName = "new_data2.json";
         final String expectid = "Employee{id=1, firstName='John', lastName='Smith', country='USA', age=25}\n";
-        final String result = readString(a);
+        final String result = readString(fileName);
         assertThat(result, equalTo(expectid));
     }
 
     @Test
     public void testListToJson() {
         System.out.println("Running Test 2");
-        List<Employee> a = new ArrayList<>();
-        a.add(new Employee(1, "John", "Smith", "USA", 25));
+        List<Employee> list = new ArrayList<>();
+        list.add(new Employee(1, "John", "Smith", "USA", 25));
         final String expectid = "[\n" +
                 "  {\n" +
                 "    \"id\": 1,\n" +
@@ -38,16 +38,16 @@ public class TestMain {
                 "    \"age\": 25\n" +
                 "  }\n" +
                 "]";
-        final String result = listToJson(a);
+        final String result = listToJson(list);
         assertThat(result, equalTo(expectid));
     }
 
     @Test
     public void testContainsReadString() {
         System.out.println("Running Test 3");
-        final String a = "new_data2.json";
+        final String fileName = "new_data2.json";
         final String expectid = "John";
-        final String result = readString(a);
+        final String result = readString(fileName);
         assertThat(result, containsString(expectid));
 
     }
@@ -55,16 +55,9 @@ public class TestMain {
     @Test
     public void testParseXML() throws IOException, ParserConfigurationException, SAXException {
         System.out.println("Running Test 4");
-        final String a = "data.xml";
-        List<Employee> result = parseXML(a);
+        final String fileName = "data.xml";
+        List<Employee> result = parseXML(fileName);
         assertThat(result, hasSize(2));
 
     }
-
-//
-//    @Test
-//    public void testAdd() {
-//        System.out.println("Running Test 3");
-//        Assertions.assertTimeout(Duration.ofSeconds(10), () -> new Employee(1, "John", "Smith", "USA", 25).toString());
-//    }
 }
